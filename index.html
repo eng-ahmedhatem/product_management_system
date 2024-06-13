@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="lod">
+      <p>Made by Ahmed Hatem</p>
+      <div class="loader">
+        <div class="load-inner load-one"></div>
+        <div class="load-inner load-two"></div>
+        <div class="load-inner load-three"></div>
+        <span class="text">Loading...</span>
+      </div>
+    </div>
+    <div class="content">
+      <div class="container">
+        <img src="acets/tumblr_oi4kldBSNS1u2gapso1_1280.png" alt="" />
+        <img src="acets/tumblr_oi4kldBSNS1u2gapso1_1280.png" alt="" />
+        <div class="top">
+          <div class="hdr">
+            <h2>cruds</h2>
+            <p>product management system</p>
+          </div>
+          <form action="" method="post">
+            <input type="text" name="" id="title" placeholder="title" />
+            <div class="row-2">
+              <input
+                type="number"
+                name=""
+                onkeyup="total_results()"
+                id="price"
+                placeholder="price"
+              />
+              <input
+                type="number"
+                name=""
+                onkeyup="total_results()"
+                id="taxes"
+                placeholder="taxes"
+              />
+              <input
+                type="number"
+                name=""
+                onkeyup="total_results()"
+                id="ads"
+                placeholder="ads"
+              />
+              <input
+                type="number"
+                name=""
+                onkeyup="total_results()"
+                id="discount"
+                placeholder="discount"
+              />
+              <h4 id="total">total : <span class="num_total"> </span></h4>
+            </div>
+            <input type="number" name="" id="count" placeholder="count" />
+            <input type="text" name="" id="category" placeholder="category" />
+            <input id="sub" type="submit" value="create" />
+          </form>
+          <div>
+            <input type="text" id="search" onkeyup="search_inp()" placeholder="search" disabled />
+            <div class="btn-search">
+              <button onclick="search_btn (this.id)" id="title">search by title</button>
+              <button onclick="search_btn (this.id)" id="categore">search by category</button>
+            </div>
+            <button id="del_a" onclick="dellALl()">delet all</button>
+          </div>
+        </div>
+        <div class="down">
+          <div class="table-respons">
+            <table>
+              <thead>
+                <th>id</th>
+                <th>title</th>
+                <th>price</th>
+                <th>ads</th>
+                <th>taxes</th>
+                <th>discount</th>
+                <th>categore</th>
+                <th>total</th>
+                <th>update</th>
+                <th>delet</th>
+              </thead>
+              <tbody id="tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+      // *********** start total ************
+      function total_results() {
+        if (price.value != "") {
+          let result =
+            +price.value + +taxes.value + +ads.value - +discount.value;
+          total.style.background = "green";
+          num_total.innerHTML = result;
+        } else {
+          total.style.background = "rgb(53, 43, 121)";
+          num_total.innerHTML = "";
+        }
+      }
+      if (price.value != "") {
+        total_results();
+      }
+
+      // *********** end total ************
+      // dellALl
+      function dellALl() {
+        let delet = confirm("Are you sure to delete all products?");
+        if (delet) {
+          database = [];
+          tbody.innerHTML = " ";
+          localStorage.clear();
+        }
+      }
+    </script>
+  </body>
+</html>
